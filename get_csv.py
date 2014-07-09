@@ -89,10 +89,10 @@ def main():
 
   # Run script
   if len(sys.argv) == 3:
-    print '\nRunning SQL without generating output file...\n'
+    print '\nRunning SQL without generating output file ...\n'
     run_sql(h,u,p,d,s)
   else:
-    print '\nRunning SQL and generating output file...\n'
+    print '\nRunning SQL and generating output file ...\n'
     get_csv(h,u,p,d,s)
 
   print '\n' + strftime('%Y-%m-%d %H:%M:%S', gmtime()) + ' Finished script ...\n'
