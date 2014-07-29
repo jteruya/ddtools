@@ -87,6 +87,9 @@ def main():
 
   print '\n' + strftime('%Y-%m-%d %H:%M:%S', gmtime()) + ' Starting script ...\n'
 
+  # Ensure VPN connection
+  os.system('sh /home/anguyen/tools/autovpncscript.sh')  
+
   # Run script
   if len(sys.argv) == 3:
     print '\nRunning SQL without generating output file ...\n'
