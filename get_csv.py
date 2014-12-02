@@ -79,10 +79,11 @@ def get_csv(host,user,password,database,script):
 
 def main():
   # Set connection parameters
-  h = r'172.24.16.100\TIMEMACHINE' 
+  # h = r'172.24.16.100\TIMEMACHINE' 
+  h = r'172.24.16.100:49207'
   u = 'sa'
   p = 'us$eu$as$2'
-  d = 'AnalyticsDB'
+  d = 'ReportingDB'
   s = sys.argv[1]
 
   print '\n' + strftime('%Y-%m-%d %H:%M:%S', gmtime()) + ' Starting script ...\n'
