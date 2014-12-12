@@ -31,11 +31,14 @@ with open(sys.argv[2], 'w') as htmlfile:
   with open(sys.argv[1], 'r') as csvfile:
     table_string = ''
     reader = csv.reader(csvfile)
-    htmlfile.write('<table border="1" cellpadding="0" cellspacing="0">')
+    htmlfile.write('<table border="1" cellpadding="5" cellspacing="0">')
     headers = [header.strip() for header in csvfile.readline().split(',')]
     line = []
     for header in headers:
-      line.append('<th align="center">' + header + '</th>')
+      if header == 'Date':
+        line.append('<th bgcolor="#000000" align="left"><font color="#fff">' + header + '</th>')
+      else:
+        line.append('<th bgcolor="#000000" align="center"><font color="#fff">' + header + '</th>')
     htmlfile.write('<tr>' + ''.join(line) + '</tr>')
     for row in reader:
       line = []
