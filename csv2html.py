@@ -45,9 +45,9 @@ with open(sys.argv[2], 'w') as htmlfile:
       for col in row:
         if is_float(col):
             if is_int(col):
-              line.append('<td align="right">' + '{:,.0f}'.format(float(col)) + '</td>')
+              line.append('<td align="center">' + '{:,.0f}'.format(float(col)) + '</td>')
             else:
-              line.append('<td align="right">' + '{:,.2f}'.format(float(col)) + '</td>')
+              line.append('<td align="center">' + '{:,.2f}'.format(float(col)) + '</td>')
         else:
           line.append('<td align="left">' + col + '</td>\n')
       htmlfile.write('<tr>' + ''.join(line) + '</tr>')
