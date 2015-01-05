@@ -4,10 +4,11 @@
 # timeout_wrapper.sh
 #
 # Runs a specific shell job for up to N seconds.
-# INPUT: <jobname> <maximum seconds to run>
+# INPUT: <jobname> <maximum seconds to run> <email>
 #
-# Example: ./timeout_wrapper.sh sleeper10 11
+# Example: ./timeout_wrapper.sh sleeper10 11 you@doubledutch.me
 # The above example will run the job "sleeper10" for 11 seconds at max before killing it. 
+# If the job is killed, it will email you@doubledutch.me.
 #
 # NOTE: Exclude the ".sh" from the jobname input parameter.
 # ------------------------------------------------------------------------
