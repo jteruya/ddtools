@@ -48,8 +48,10 @@ with open(sys.argv[2], 'w') as htmlfile:
               line.append('<td align="center">' + '{:,.0f}'.format(float(col)) + '</td>')
             else:
               line.append('<td align="center">' + '{:,.2f}'.format(float(col)) + '</td>')
+        elif col == 'None':
+            line.append('<td align="center">' + col + '</td>\n')
         else:
-          line.append('<td align="center">' + col + '</td>\n')
+          line.append('<td align="left">' + col + '</td>\n')
       htmlfile.write('<tr>' + ''.join(line) + '</tr>')
     htmlfile.write('</table>\n')
 
