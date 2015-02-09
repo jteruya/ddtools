@@ -17,9 +17,9 @@ import sys
 import StringIO
 from time import gmtime, strftime
 
-def get_data(host,user,password,database,script):
+def get_data(host,user,password,database,script,sdir,tdir):
   # Set working directory and alias
-  dir = os.getcwd() + '/' if len(sys.argv[1].split('/')) == 1 else '/'.join(sys.argv[1].split('/')[:-1]) + '/'
+  dir = tdir
   alias = script.split('/')[-1].split('.')[0]
 
   # Set connection parameters
@@ -34,16 +34,16 @@ def get_data(host,user,password,database,script):
   cur = conn.cursor()
 
   # Get script, run it
-  file = open(s)
+  file = open(sdir + '/' + s)
   sql = file.read()
   file.close()
   cur.execute(sql)
 
   # Write results to file
   encoding = 'ascii'
-  csv = dir + alias + '.out'
+  csv = tdir + '/' +  alias + '.out'
   out = codecs.open(csv,'w',encoding)
-  writer = CSV.writer(out, delimiter='~')
+  writer = CSV.writer(out, delimiter='|')
   # writer = csv.writer(out, delimiter=',', quoting=csv.QUOTE_ALL)
 
   # Header
@@ -69,13 +69,17 @@ def main():
   u = 'sa'
   p = 'us$eu$as$2'
   d = 'ReportingDB'
-  s = sys.argv[1]
+  sdir = sys.argv[1]
+  tdir = sys.argv[2]
+  s = sys.argv[3]
 
-  pg_user = sys.argv[2]
-  pg_schema_table = sys.argv[3]
+  pg_user = sys.argv[4]
+  pg_schema_table = sys.argv[5]
 
   alias = s.split('/')[-1].split('.')[0]
-  alias_file = alias + '.out'
+  alias_file = tdir + '/' + alias + '.out'
+
+  print "Landed file will be saved to: " + alias_file + "\n"
 
   print '\n' + strftime('%Y-%m-%d %H:%M:%S', gmtime()) + ' Starting script ...\n'
 
@@ -88,7 +92,7 @@ def main():
   print '\nRunning SQL and generating output file ...\n'
 
   # Get the Data
-  get_data(h,u,p,d,s)
+  get_data(h,u,p,d,s,sdir,tdir)
 
   # Open the landed file
   f = open(alias_file, 'r')
@@ -98,7 +102,7 @@ def main():
   conn = psycopg2.connect("dbname='dev' user='" + pg_user + "' host='10.223.176.60' port='5432'")
 
   # Copy from file to Postgres Table
-  conn.cursor().copy_from(f,pg_schema_table,sep='~')
+  conn.cursor().copy_from(f,pg_schema_table,sep='|')
   conn.commit()
 
   # Close the landed file

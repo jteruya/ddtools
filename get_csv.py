@@ -72,10 +72,10 @@ def get_csv(host,user,password,database,script):
   conn.close()
 
   # Write some of the results to console
-  os.system('dos2unix ' + csv)
-  print '\n'
-  os.system('column -s, -t <  ' + csv + ' | head -n 1000')
-  os.system('echo \'(First 1000 lines or less only)\'')
+  # os.system('dos2unix ' + csv)
+  # print '\n'
+  # os.system('column -s, -t <  ' + csv + ' | head -n 1000')
+  # os.system('echo \'(First 1000 lines or less only)\'')
 
 def main():
   # Set connection parameters
