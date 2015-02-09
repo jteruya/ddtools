@@ -102,7 +102,7 @@ def main():
   conn = psycopg2.connect("dbname='dev' user='" + pg_user + "' host='10.223.176.60' port='5432'")
 
   # Copy from file to Postgres Table
-  conn.cursor().copy_from(f,pg_schema_table,sep='~')
+  conn.cursor().copy_from(f,pg_schema_table,sep='~',null='None')
   conn.commit()
 
   # Close the landed file
