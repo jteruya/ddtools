@@ -65,6 +65,7 @@ def get_csv(host,user,password,database,script):
 
   while row:
     line = [col.encode(encoding,'ignore') if type(col) is unicode else str(col) for col in row]
+    line = ['' if l == 'None' else l for l in line]
     writer.writerow(line)
     row = cur.fetchone()
 
@@ -74,8 +75,8 @@ def get_csv(host,user,password,database,script):
   # Write some of the results to console
   os.system('dos2unix ' + csv)
   print '\n'
-  os.system('column -s, -t <  ' + csv + ' | head -n 1000')
-  os.system('echo \'(First 1000 lines or less only)\'')
+  os.system('column -s, -t <  ' + csv + ' | head -n 10')
+  os.system('echo \'(First 10 lines or less only)\'')
 
 def main():
   # Set connection parameters

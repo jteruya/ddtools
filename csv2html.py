@@ -36,9 +36,9 @@ with open(sys.argv[2], 'w') as htmlfile:
     line = []
     for header in headers:
       if header == 'Date':
-        line.append('<th bgcolor="#000000" align="left"><font color="#fff">' + header + '</th>')
+        line.append('<th bgcolor="#000000" align="left"><font color="#fff">' + header + '</font></th>')
       else:
-        line.append('<th bgcolor="#000000" align="center"><font color="#fff">' + header + '</th>')
+        line.append('<th bgcolor="#000000" align="center"><font color="#fff">' + header + '</font></th>')
     htmlfile.write('<tr>' + ''.join(line) + '</tr>')
     for row in reader:
       line = []
